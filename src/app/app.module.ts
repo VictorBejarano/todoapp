@@ -2,9 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 
+// ngrx
 import { StoreModule } from '@ngrx/store';
 import { todoReducer } from './todo/todo.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// forms
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -27,6 +31,7 @@ import { TodoFooterComponent } from './todo/todo-footer/todo-footer.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({todos: todoReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

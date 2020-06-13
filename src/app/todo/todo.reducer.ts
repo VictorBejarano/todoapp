@@ -13,6 +13,6 @@ export function todoReducer(
             return [...state, todo ];
 
         default:
-            break;
+            return state;
     }
 }
