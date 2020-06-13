@@ -16,7 +16,19 @@ export function todoReducer(
     switch (action.type) {
         case fromTodo.AGREGAR_TODO:
             const todo = new Todo(action.texto);
-            return [...state, todo ];
+            return [...state, todo];
+
+        case fromTodo.TOGGLE_TODO:
+            return state.map((todoEdit) => {
+                if (todoEdit.id === action.id) {
+                    return {
+                        ...todoEdit,
+                        completado: !todoEdit.completado,
+                    };
+                } else {
+                    return todoEdit;
+                }
+            });
 
         default:
             return state;

@@ -1,5 +1,5 @@
 export class Todo {
-    id: string;
+    id: number;
     texto: string;
     completado: boolean;
 
@@ -7,6 +7,6 @@ export class Todo {
         // Texto con la primeta letra en mayuscula
         this.texto = texto.charAt(0).toUpperCase() + texto.slice(1);
         this.completado = false;
-        this.id = String(Math.random());
+        this.id = Math.random();
     }
 }
