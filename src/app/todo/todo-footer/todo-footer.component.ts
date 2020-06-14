@@ -1,15 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromFiltro from '../../filter/filter.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducers';
 
 @Component({
-  selector: 'app-todo-footer',
-  templateUrl: './todo-footer.component.html',
-  styleUrls: ['./todo-footer.component.css']
+    selector: 'app-todo-footer',
+    templateUrl: './todo-footer.component.html',
+    styleUrls: ['./todo-footer.component.css'],
 })
 export class TodoFooterComponent implements OnInit {
+    filtrosValidos: fromFiltro.filtrosValidos[] = [
+        'todos',
+        'completados',
+        'pendientes',
+    ];
 
-  constructor() { }
+    filtroActual: fromFiltro.filtrosValidos;
 
-  ngOnInit(): void {
-  }
+    constructor(private store: Store<AppState>) {}
 
+    ngOnInit(): void {
+        this.store.subscribe((state) => {
+            this.filtroActual = state.filtro;
+        });
+    }
+
+    cambiarFiltro(nuevoFiltro: fromFiltro.filtrosValidos) {
+        const accion = new fromFiltro.SetFiltroAction(nuevoFiltro);
+        this.store.dispatch(accion);
+    }
 }
