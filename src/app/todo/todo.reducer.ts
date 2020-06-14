@@ -42,6 +42,9 @@ export function todoReducer(
                 }
             });
 
+        case fromTodo.BORRAR_TODO:
+            return state.filter(todoEdit => todoEdit.id !== action.id);
+
         default:
             return state;
     }
